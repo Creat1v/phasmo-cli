@@ -6,30 +6,8 @@ import argparse
 import variables
 
 def get_evidence_by_ghosttype(ghosttype):
-    if (ghosttype == "Banshee"):
-        return variables.Banshee
-    if (ghosttype == "Demon"):
-        return variables.Demon
-    if (ghosttype == "Jinn"):
-        return variables.Jinn
-    if (ghosttype == "Mare"):
-        return variables.Mare
-    if (ghosttype == "Oni"):
-        return variables.Oni
-    if (ghosttype == "Phantom"):
-        return variables.Phantom
-    if (ghosttype == "Poltergeist"):
-        return variables.Poltergeist
-    if (ghosttype == "Revenant"):
-        return variables.Revenant
-    if (ghosttype == "Shade"):
-        return variables.Shade
-    if (ghosttype == "Spirit"):
-        return variables.Spirit
-    if (ghosttype == "Wraith"):
-        return variables.Wraith
-    if (ghosttype == "Yurei"):
-        return variables.Yurei
+    # ganz einfach das dict auf die variablen abgefragt
+    return variables.mapping[str(ghosttype)]
 
 # Parsing optional arguments (nargs)
 parser = argparse.ArgumentParser(description='Shows ghost type depending on given evidences. \
@@ -50,7 +28,7 @@ else:
     print ("Enter 1. evidence:")
     Evidence1 = input()
 
-for i in variables.Ghosts:
+for i in list(variables.mapping.keys()):
     if (Evidence1 in get_evidence_by_ghosttype(i)): # If the evidence matches the ghost's ones
         variables.Suspected_Type.append(i)
         print (i + " - " + str(get_evidence_by_ghosttype(i))) # Print the ghosttype + evidences of the ghost
